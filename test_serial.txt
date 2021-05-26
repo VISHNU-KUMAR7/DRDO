@@ -1,0 +1,16 @@
+import serial
+import time
+print("hello world")
+ser = serial.Serial('COM9',9600)
+time.sleep(1)
+for i in range(10):
+    data = ser.readline()
+    bin_data = data.decode()
+    str_data = bin_data.rstrip()
+    
+    #print(str_data)
+    list_data = str_data.split(",")
+    for i in list_data:
+        print(i,end = " ")
+    print("")
+    #type(str_data)

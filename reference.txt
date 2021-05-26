@@ -1,0 +1,24 @@
+how to change the color of label in matplotlib:- https://www.kite.com/python/answers/how-to-change-the-color-of-the-axis-labels-of-a-plot-in-matplotlib-in-python#:~:text=axes.-,Axes.,Call%20matplotlib.
+
+
+How to change line color in matplotlib:--https://www.codespeedy.com/how-to-change-line-color-in-matplotlib/
+
+
+How to Change Plot Background in Matplotlib:-- https://stackabuse.com/how-to-change-plot-background-in-matplotlib/
+
+
+Display Google Map API in Python Tkinter window:- https://stackoverflow.com/questions/5444438/display-google-map-api-in-python-tkinter-window
+
+
+map_buttom_tkinter_window:- https://pythonprogramming.altervista.org/webbrowser-meets-tkinter-part-2/
+
+
+
+
+Display Google Map API in Python Tkinter window:-  https://www.geeksforgeeks.org/python-plotting-google-map-using-gmplot-package/
+
+
+
+Multiple window - https://www.youtube.com/watch?v=2PWVja1bRlU&ab_channel=TheDataSinghTheDataSingh
+
+
