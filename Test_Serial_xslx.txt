@@ -1,0 +1,94 @@
+import serial
+import time
+import datetime
+from openpyxl import Workbook
+from openpyxl.styles import PatternFill
+
+wb = Workbook()
+wb['Sheet'].title = 'REport on launch'
+sh1 = wb.active
+sh1['A1'].value = 'Date'
+sh1.cell(1,2).value = "Time"
+sh1.cell(1,3).value = "Aceloromerter_X"
+sh1.cell(1,3).fill = PatternFill('solid',fgColor ='FF4500')
+sh1.cell(1,4).value = "Aceloromerter_Y"
+sh1.cell(1,4).fill = PatternFill('solid',fgColor ='A52A2A')
+sh1.cell(1,5).value = "Aceloromerter_Z"
+sh1.cell(1,5).fill = PatternFill('solid',fgColor ='FF0000')
+sh1.cell(1,6).value = "Gyrometer_X"
+sh1.cell(1,6).fill = PatternFill('solid',fgColor ='7CFC00')
+sh1.cell(1,7).value = "Gyrometer_Y"
+sh1.cell(1,7).fill = PatternFill('solid',fgColor ='7FFF00')
+sh1.cell(1,8).value = "Gyrometer_Z"
+sh1.cell(1,8).fill = PatternFill('solid',fgColor ='ADFF2F')
+sh1.cell(1,9).value = "Magnetometer_X"
+sh1.cell(1,9).fill = PatternFill('solid',fgColor ='4169E1')
+sh1.cell(1,10).value = "Magnetometer_Y"
+sh1.cell(1,10).fill = PatternFill('solid',fgColor= '00BFFF')
+sh1.cell(1,11).value = "Magnetometer_Z"
+sh1.cell(1,11).fill = PatternFill('solid',fgColor= '1E90FF')
+sh1.cell(1,12).value = "Latitude"
+sh1.cell(1,12).fill = PatternFill('solid',fgColor= 'FFE4C4')
+sh1.cell(1,13).value = "Longitude"
+sh1.cell(1,13).fill = PatternFill('solid',fgColor= 'FFEBCD')
+ser = serial.Serial('COM3',9600)
+time.sleep(2)
+global row
+row = 2
+for _ in range(1,10):
+    time.sleep(1)
+    data = ser.readline()
+    bin_data = data.decode()
+    str_data = bin_data.rstrip()
+    
+    #print(str_data)
+    list_data = str_data.split(",")
+    if(len(list_data)!=0):
+        now = datetime.datetime.today()
+        list_data.insert(0,now.strftime("%H:%M:%S"))
+        list_data.insert(0,now.strftime("%m-%d-%Y"))
+    col = 1
+    print(row, col)
+    for i in list_data:
+        sh1.cell(row,col).value = i
+        
+        if(col == 3):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'FF4500')
+            
+        if(col == 4):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'A52A2A')
+            
+        if(col == 5):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'FF0000')
+            
+        if(col == 6):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = '7CFC00')
+            
+        if(col == 7):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = '7FFF00')
+            
+        if(col == 8):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'ADFF2F')
+            
+        if(col == 9):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = '4169E1')
+            
+        if(col == 10):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = '00BFFF')
+            
+        if(col == 11):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = '1E90FF')
+            
+        if(col == 12):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'FFE4C4')
+            
+        if(col == 13):
+            sh1.cell(row,col).fill = PatternFill('solid',fgColor = 'FFEBCD')
+
+        col+=1
+        print(i,end = " ")
+    row+=1
+    print("")
+    
+    #type(str_data)
+wb.save('Test_Data.xlsx')
